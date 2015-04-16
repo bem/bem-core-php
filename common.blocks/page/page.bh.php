@@ -4,6 +4,7 @@ return function ($bh) {
     $bh->match('page', function ($ctx, $json) {
         $ctx
             ->tag('body')
+            ->tParam('nonceCsp', $json->nonce)
             ->content([
                 $ctx->content(),
                 $json->scripts
@@ -19,8 +20,15 @@ return function ($bh) {
                         'elem' => 'head',
                         'content' => [
                             ['tag' => 'meta', 'attrs' => ['charset' => 'utf-8']],
+                            $json->uaCompatible === false? '' : [
+                                'tag' => 'meta',
+                                'attrs' => [
+                                    'http-equiv' => 'X-UA-Compatible',
+                                    'content' => $json->uaCompatible ?: 'IE=edge'
+                                ]
+                            ],
                             ['tag' => 'title', 'content' => $json->title],
-                            ['block' => 'ua'],
+                            ['block' => 'ua', 'attrs' => ['nonce' => $json->nonce]],
                             $json->head,
                             $json->styles,
                             $json->favicon ? ['elem' => 'favicon', 'url' => $json->favicon] : '',
