@@ -1,9 +1,8 @@
 .project
 .settings
 
-.bem/cache
-.bem/snapshots
 .enb/tmp
+npm-debug.log
 
 libs
 node_modules
