@@ -1,8 +1,10 @@
 <?php
 return function ($bh) {
 
-    $bh->match('page', function ($ctx) {
-        $ctx->mix([ 'block' => 'ua', 'js' => true ]);
+    $bh->match('page', function ($ctx, $json) {
+        $ctx
+            ->mix([ 'block' => 'ua', 'js' => true ])
+            ->tParam('zoom', $json->zoom);
     });
 
     $bh->match('page__head', function ($ctx, $json) {
@@ -15,7 +17,7 @@ return function ($bh) {
                     'attrs' => [
                         'name' => 'viewport',
                         'content' => 'width=device-width,' .
-                            ($json->zoom?
+                            ($ctx->tParam('zoom')?
                                 'initial-scale=1' :
                                 'maximum-scale=1,initial-scale=1,user-scalable=0')
                     ]
