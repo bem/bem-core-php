@@ -1,6 +1,5 @@
 {
   "name": "bem-core-php",
-  "version": "2.7.0",
   "description": "bh.php templates for bem-core library",
   "bugs": "https://github.com/bem/bem-core-php/issues",
   "main": "",
@@ -11,7 +10,7 @@
     "*.bundles"
   ],
   "dependencies": {
-    "bem-core": "2.7.0"
+    "bem-core": "2.9.0"
   },
   "license": "MPL-2.0"
 }
