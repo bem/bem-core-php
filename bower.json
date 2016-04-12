@@ -10,7 +10,7 @@
     "*.bundles"
   ],
   "dependencies": {
-    "bem-core": "2.9.0"
+    "bem-core": "2.9.1"
   },
   "license": "MPL-2.0"
 }
